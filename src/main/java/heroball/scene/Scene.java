@@ -1,6 +1,6 @@
 package heroball.scene;
 
-import heroball.character.Player;
+import heroball.character.Character;
 import heroball.map.Map;
 import lombok.Getter;
 
@@ -12,7 +12,7 @@ public abstract class Scene {
     @Getter
     Map map;
     @Getter
-    List<Player> players = new ArrayList<>();
+    List<Character> characters = new ArrayList<>();
 
     public Scene(){
     }
@@ -21,8 +21,14 @@ public abstract class Scene {
         this.map = map;
     }
 
-    public void play(){
+    public void play() throws InterruptedException {
+        // TODO: Set while loop here
         map.paint();
+        map.getFrame().repaint();
     }
 
+
+    public void add(Character c) {
+        characters.add(c);
+    }
 }

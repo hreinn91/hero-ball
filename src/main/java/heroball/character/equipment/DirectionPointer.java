@@ -1,5 +1,6 @@
 package heroball.character.equipment;
 
+import heroball.physics.Vector2D;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,7 +12,7 @@ public class DirectionPointer extends Equipment{
     @Getter private int size;
 
     @Override
-    public void paint(Graphics2D graphicsContext, Point location) {
+    public void paint(Graphics2D graphicsContext, Vector2D location) {
 
     }
 }

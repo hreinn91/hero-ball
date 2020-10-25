@@ -87,7 +87,8 @@ public abstract class Map {
         characters.forEach(c -> c.paint(graphicsContext));
 
         graphicsContext.dispose();
-        contextRender.repaint();
+        contentPanel.paintComponents(graphicsContext);
+        frame.repaint();
     }
 
     public void add(Character c) {

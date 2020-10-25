@@ -3,18 +3,18 @@ package heroball.scene;
 import heroball.character.Player;
 import heroball.map.Map;
 import heroball.map.Map1;
+import heroball.physics.Vector2D;
 
-import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class Scene1 extends Scene {
 
     public Scene1(){
         super();
-        this.map = new Map1("First Map", 800, 800, 800,
-                800, Color.WHITE);
-        Player player = new Player(15, Color.BLACK, new Point(100, 100));
-        getPlayers().add(player);
-        map.add(player);
+        this.map = new Map1();
+        Player player1 = new Player();
+        add(player1);
+        map.add(player1);
     }
 
     public Scene1(Map map) {
@@ -22,7 +22,7 @@ public class Scene1 extends Scene {
     }
 
     @Override
-    public void play(){
+    public void play() throws InterruptedException {
         super.play();
     }
 }
