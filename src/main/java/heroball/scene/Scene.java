@@ -22,10 +22,22 @@ public abstract class Scene {
     }
 
     public void play() throws InterruptedException {
-        // TODO: Set while loop here
         map.repaint();
     }
 
+    public void playWithThreadSafety() throws InterruptedException {
+        // Thread safety
+        Runnable swingStarter = () -> {
+            try {
+                while (true){
+                    play();
+                    Thread.sleep(20);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        };
+    }
 
     public void add(Character c) {
         characters.add(c);

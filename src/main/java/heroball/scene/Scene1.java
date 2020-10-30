@@ -25,4 +25,10 @@ public class Scene1 extends Scene {
     public void play() throws InterruptedException {
         super.play();
     }
+
+    @Override
+    public void playWithThreadSafety() throws InterruptedException {
+        super.playWithThreadSafety();
+    }
+
 }
