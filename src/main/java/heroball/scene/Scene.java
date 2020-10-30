@@ -23,8 +23,7 @@ public abstract class Scene {
 
     public void play() throws InterruptedException {
         // TODO: Set while loop here
-        map.paint();
-        map.getFrame().repaint();
+        map.repaint();
     }
 
 
