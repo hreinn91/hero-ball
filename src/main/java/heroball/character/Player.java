@@ -31,16 +31,35 @@ public class Player extends Character {
 //        paintCircle(graphics, getSize(), getColor(), getLocation());
 
         graphics.setColor(getColor());
-//        graphics.drawRect(0, 0, 200, 200);
-//        graphics.fillOval(100, 100, 5, 5);
-//        graphics.fillOval(200, 200, 5, 5);
 
-        int size = 30;
+        int size = 50;
         Vector2D location = new Vector2D(400, 400);
         Vector2D direction = getLocation();
         paintCharacterPointer(graphics, getColor(), location, direction, size);
         drawCircle(graphics, size, getColor(), location);
         drawLine(graphics, getColor(), location, direction);
+        paintCircle(graphics, 5, getColor(), direction);
+
+
+//        Vector2D point = new Vector2D(100, 200);
+//        paintArch(graphics, point, getColor(), 35, 0, 90);
+//        paintCircle(graphics, 4, Color.BLACK, point);
+
+
+        paintArch(graphics, new Vector2D(300, 200), getColor(), 35, 90, 90);
+        paintCircle(graphics, 4, Color.BLACK, new Vector2D(300, 200));
+
+        Vector2D point2 = new Vector2D(300, 200);
+        paintCircle(graphics, 4, getColor(), point2);
+        paintArch(graphics, point2, getColor(), 35, 180, 45);
+
+        Vector2D point1 = new Vector2D(500, 200);
+        paintCircle(graphics, 4, getColor(), point1);
+        paintArch(graphics, point1, getColor(), 35, 90, 45);
+
+        Vector2D point3 = new Vector2D(700, 200);
+        paintCircle(graphics, 4, getColor(), point3);
+        paintArch(graphics, point3, getColor(), 35, 270, 45);
 
 
         // Paint equipment

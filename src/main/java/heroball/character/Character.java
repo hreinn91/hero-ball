@@ -1,7 +1,6 @@
 package heroball.character;
 
 import heroball.physics.Vector2D;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +11,9 @@ public abstract class Character {
     @Getter
     @Setter
     private int size;
+    @Getter
+    @Setter
+    private int dir = 0;
     @Getter
     @Setter
     private Vector2D direction = new Vector2D(0, 0);

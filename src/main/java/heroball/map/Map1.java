@@ -12,7 +12,7 @@ import static heroball.util.ColorsUtil.WHITE_GRAY_DARK;
 public class Map1 extends Map {
 
     public Map1(){
-        super("Map1", 800, 800, 800, 800, 10,
+        super("Map1", 800, 800, 800, 800, 30,
                 WHITE_GRAY_DARK, List.of(new Player(100,  Color.RED, new Vector2D(500, 500))));
     }
 

@@ -27,9 +27,8 @@ public class Window extends JPanel {
 
     public void step(){
         Character character = getCharacters().get(0);
-//        int random1 = (int)(-3 + Math.random()*6);
-//        int random2 = (int)(-3 + Math.random()*6);
-//        character.move(-1, 0);
+        character.move(0, -2);
+//        character.setDir(character.getDir() + 1);
 
         //End with repaint
         repaint();

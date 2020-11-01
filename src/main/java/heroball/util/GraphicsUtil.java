@@ -37,7 +37,6 @@ public class GraphicsUtil {
         graphicsContext.draw(shape);
     }
 
-
     public static void paintCircle(Graphics graphics, int radius, Color color, Vector2D location){
         graphics.setColor(color);
         graphics.fillOval(location.getX()-radius, location.getY()-radius, 2*radius, 2*radius);
@@ -48,23 +47,42 @@ public class GraphicsUtil {
         graphics.drawOval(origin.getX()-radius, origin.getY()-radius, 2*radius, 2*radius);
     }
 
+    // This should work for direction 270
     public static void paintArch(Graphics graphics, Vector2D location, Color color, int radius, int direction, int arcWidth){
         graphics.setColor(color);
-        graphics.fillArc(location.getX() - radius, location.getY() - radius, 2 * radius, 2 * radius, direction, arcWidth);
+        int archX = (int) (Math.cos(Math.toRadians((float)direction) + (float)(arcWidth / 2)) * radius);
+        int archY = (int) (Math.sin(Math.toRadians((float)direction) + (float)(arcWidth / 2)) * radius);
+
+
+        graphics.fillArc(location.getX() - radius - archX , location.getY() - radius - archY, 2 * radius,
+                2 * radius, direction, arcWidth);
     }
 
     // Paints the arch pointing in the direction of the direction vector
     // The origin of the arch is in the middle of the arch and not on the point
     public static void paintCharacterPointer(Graphics graphics, Color color, Vector2D location, Vector2D direction, int radius){
         graphics.setColor(color);
+//        radius = radius + 10;
         int archWidth = 90;
-        int angleToDirection = -1 * getAngle(location, direction) + archWidth + 45;
-        int archCenterX = location.getX() - radius - (int)(Math.cos(Math.toRadians(angleToDirection)) * radius);
-        int archCenterY = location.getY() - radius - (int)(Math.sin(Math.toRadians(angleToDirection)) * radius);
+        int angleToDirection = -1 * getAngle(location, direction) + 90 + 45;
 
-        log.info(angleToDirection + "");
 
         graphics.fillArc(location.getX() - radius, location.getY() - radius, 2 * radius, 2 * radius,
+                angleToDirection, archWidth);
+    }
+
+    // Paints the arch pointing in the direction of the direction vector
+    // The origin of the arch is in the middle of the arch and not on the point
+    public static void paintCharacterPointerExperimental(Graphics graphics, Color color, Vector2D location, Vector2D direction, int radius){
+        graphics.setColor(color);
+//        radius = radius + 10;
+        int archWidth = 90;
+        int angleToDirection = -1 * getAngle(location, direction) + 90 + 45;
+        int archX = (int) (Math.cos(Math.toRadians((float)angleToDirection)) * radius);
+        int archY = (int) (Math.sin(Math.toRadians((float)angleToDirection)) * radius);
+
+
+        graphics.fillArc(location.getX() - radius - archX, location.getY() - radius - archY, 2 * radius, 2 * radius,
                 angleToDirection, archWidth);
     }
 
