@@ -7,19 +7,27 @@ import lombok.Setter;
 
 import java.awt.*;
 
-@AllArgsConstructor
 public abstract class Character {
 
     @Getter
     @Setter
     private int size;
     @Getter
+    @Setter
+    private Vector2D direction = new Vector2D(0, 0);
+    @Getter
     private Color color;
     @Setter
     @Getter
     private Vector2D location;
 
-    public abstract void paint(Graphics2D graphicsContext);
+    public Character(int size, Color color, Vector2D location){
+        this.size = size;
+        this.color = color;
+        this.location = location;
+    }
+
+    public abstract void paint(Graphics graphicsContext);
 
     public void move(Vector2D velocity) {
         location.add(velocity);

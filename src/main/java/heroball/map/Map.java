@@ -8,14 +8,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Map extends JFrame implements ActionListener {
 
-    @Getter
-    @Setter
-    private String name;
     @Getter
     @Setter
     private int mapWidth;
@@ -25,54 +21,39 @@ public abstract class Map extends JFrame implements ActionListener {
     @Getter
     private final Color mapColor;
     @Getter
-    private Timer timer;
+    private final Timer timer;
     @Getter
-    private MainPanel panel;
+    private final Window window;
     @Getter
-    private final List<Character> characters = new ArrayList<>();
+    private final List<Character> characters;
 
 
-    public Map(String name, int mapWidth, int mapHeight, int frameWidth, int frameHeight, Color mapColor) {
+    public Map(String name, int mapWidth, int mapHeight, int frameWidth, int frameHeight, int animationDelay,
+               Color mapColor, List<Character> characters) {
+        super(name);
         sizeCheck(mapWidth, frameWidth);
         sizeCheck(mapHeight, frameHeight);
 
-        this.name = name;
+        // MAP PROPERTIES
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
+        this.characters = characters;
+
+        // SET THE FRAME PROPERTIES
         this.mapColor = mapColor;
-        setTitle(name);
-        this.panel = new MainPanel(frameWidth, frameHeight, mapColor);
-        add(panel);
+        this.window = new Window(frameWidth, frameHeight, mapColor, characters);
+        add(window);
         pack();
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-    }
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    public class MainPanel extends JPanel {
-        public MainPanel(int width, int height, Color color) {
-            setPreferredSize(new Dimension(width, height));
-            setBackground(color);
-        }
-
-        @Override
-        protected void paintComponent(Graphics graphics) {
-            Graphics2D graphics2D = (Graphics2D) graphics;
-            graphics2D.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON));
-
-            super.paintComponent(graphics);
-
-            characters.forEach(c -> c.paint(graphics2D));
-//            graphics.dispose();
-        }
+        // SET ACTION LISTENER PROPERTIES
+        this.timer = new Timer(animationDelay, this);
+        timer.start();
     }
 
     public void actionPerformed(ActionEvent e) {
-        panel.repaint();
-    }
-
-    public void step(){
-        panel.repaint();
+        window.step();
     }
 
     public void add(Character c) {
@@ -84,11 +65,4 @@ public abstract class Map extends JFrame implements ActionListener {
             throw new IllegalArgumentException("Frame height or width must not exceed map height" +
                     " or width");
     }
-
-
-    public static void main(String[] arg) {
-        Map map = new Map1();
-        map.getPanel().repaint();
-    }
-
 }

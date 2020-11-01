@@ -2,12 +2,13 @@ package heroball.scene;
 
 import heroball.character.Character;
 import heroball.map.Map;
+import heroball.map.Map1;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Scene {
+public class Scene {
 
     @Getter
     Map map;
@@ -15,6 +16,7 @@ public abstract class Scene {
     List<Character> characters = new ArrayList<>();
 
     public Scene(){
+        this.map = new Map1();
     }
 
     public Scene(Map map){
@@ -22,19 +24,13 @@ public abstract class Scene {
     }
 
     public void play() throws InterruptedException {
-        map.repaint();
     }
 
     public void playWithThreadSafety() throws InterruptedException {
         // Thread safety
         Runnable swingStarter = () -> {
-            try {
-                while (true){
-                    play();
-                    Thread.sleep(20);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            while (true){
+
             }
         };
     }

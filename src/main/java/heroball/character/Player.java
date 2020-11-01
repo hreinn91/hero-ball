@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static heroball.util.GraphicsUtil.paintCircle;
+import static heroball.util.GraphicsUtil.*;
 
 public class Player extends Character {
 
@@ -26,11 +26,24 @@ public class Player extends Character {
     }
 
     @Override
-    public void paint(Graphics2D graphicsContext) {
-        // Paint Player
-        paintCircle(graphicsContext, getSize(), getColor(), getLocation());
+    public void paint(Graphics graphics) {
+        // Paint Player body
+//        paintCircle(graphics, getSize(), getColor(), getLocation());
+
+        graphics.setColor(getColor());
+//        graphics.drawRect(0, 0, 200, 200);
+//        graphics.fillOval(100, 100, 5, 5);
+//        graphics.fillOval(200, 200, 5, 5);
+
+        int size = 30;
+        Vector2D location = new Vector2D(400, 400);
+        Vector2D direction = getLocation();
+        paintCharacterPointer(graphics, getColor(), location, direction, size);
+        drawCircle(graphics, size, getColor(), location);
+        drawLine(graphics, getColor(), location, direction);
+
 
         // Paint equipment
-        equipments.forEach(equipment -> equipment.paint(graphicsContext, getLocation()));
+//        equipments.forEach(equipment -> equipment.paint(graphicsContext, getLocation()));
     }
 }
