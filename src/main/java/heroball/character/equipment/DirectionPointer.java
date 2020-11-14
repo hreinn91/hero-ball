@@ -12,7 +12,7 @@ public class DirectionPointer extends Equipment{
     @Getter private int size;
 
     @Override
-    public void paint(Graphics2D graphicsContext, Vector2D location) {
+    public void paint(Graphics graphicsContext, Vector2D location) {
 
     }
 }

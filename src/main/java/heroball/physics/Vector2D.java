@@ -32,12 +32,4 @@ public class Vector2D{
     public double getYAsDouble(){
         return (double) y;
     }
-
-
-    // TODO: Handle case when x = 0
-    public static int getAngle(Vector2D start, Vector2D end){
-        int x = end.getX() - start.getX();
-        int y = end.getY() - start.getY();
-        return (int) Math.toDegrees(Math.atan2((double) y, (double) x));
-    }
 }

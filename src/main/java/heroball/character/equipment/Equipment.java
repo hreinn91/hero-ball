@@ -6,6 +6,6 @@ import java.awt.*;
 
 public abstract class Equipment {
 
-    public abstract void paint(Graphics2D graphicsContext, Vector2D location);
+    public abstract void paint(Graphics graphicsContext, Vector2D location);
 
 }

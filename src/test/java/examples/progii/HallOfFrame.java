@@ -1,6 +1,5 @@
-package heroball.progii;
+package examples.progii;
 
-import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
