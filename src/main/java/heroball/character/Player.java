@@ -2,6 +2,7 @@ package heroball.character;
 
 import heroball.character.equipment.Equipment;
 import heroball.physics.Vector2D;
+import lombok.Getter;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,10 +12,11 @@ import static heroball.util.GraphicsUtil.*;
 
 public class Player extends Character {
 
+    @Getter
     List<Equipment> equipments = new ArrayList<>();
 
     public Player(){
-        super(12, Color.BLACK, new Vector2D(200, 200));
+        super(12, Color.RED, new Vector2D(200, 200));
     }
 
     public Player(int size, Color color, Vector2D location){
@@ -27,23 +29,11 @@ public class Player extends Character {
 
     @Override
     public void paint(Graphics graphics) {
-        // Paint Player body
-//        paintCircle(graphics, getSize(), getColor(), getLocation());
-
         graphics.setColor(getColor());
-
-        int size = 50;
-        Vector2D location = new Vector2D(250, 250);
-        Vector2D direction = getLocation();
-        paintCharacterPointer(graphics, getColor(), location, direction, size);
-        drawCircle(graphics, size, getColor(), location);
-        drawLine(graphics, getColor(), location, direction);
-        paintCircle(graphics, 5, getColor(), direction);
-
-
-
+        paintCircle(graphics, getSize(), getColor(), new Vector2D(100, 100));
+        paintCharacterPointer(graphics, getColor(), getLocation(), new Vector2D(100, 100), getSize());
 
         // Paint equipment
-        equipments.forEach(equipment -> equipment.paint(graphics, getLocation()));
+        getEquipments().forEach(equipment -> equipment.paint(graphics, getLocation()));
     }
 }

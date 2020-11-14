@@ -1,19 +1,38 @@
 package heroball.physics;
 
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Handle trigonometry for the Swing coordinate system
+ */
+
+@Slf4j
 @UtilityClass
 public class Trig {
 
     /**
-     * @return The atan of the points end and start
+     * @return Gives the angle between from to given swing coordinates
      */
     // TODO: Handle case when x = 0
-    public static int getAngleDeg(Vector2D start, Vector2D end){
-        int dx = end.getX() - start.getX();
-        int dy = end.getY() - start.getY();
-        int angleDeg = (int) Math.toDegrees(Math.atan2(dy, dx));
+    public static short getAngleDeg(Vector2D from, Vector2D to) {
+        float dx = (float) (to.getXAsDouble() - from.getXAsDouble());
+        float dy = (float) (to.getYAsDouble() - from.getYAsDouble());
+        dy = dy * -1;
+        short angle = atan(dy / dx);
+        if (dy == 0 && dx == 0)
+            return 0;
+        else if (dy >= 0 && dx >= 0) {
+            return angle;
+        } else if (dx < 0) {
+            angle = (short) (angle + 180);
+            return angle;
+        }
+        angle = (short) (360 + atan((float) (dy / dx)));
+        return angle;
+    }
 
-        return angleDeg <0 ? 360 + angleDeg : angleDeg;
+    private static short atan(float expr) {
+        return (short) Math.toDegrees(Math.atan(expr));
     }
 }

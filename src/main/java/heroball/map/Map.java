@@ -29,7 +29,7 @@ public abstract class Map extends JFrame implements ActionListener {
 
 
     public Map(String name, int mapWidth, int mapHeight, int frameWidth, int frameHeight, int animationDelay,
-               Color mapColor, List<Character> characters) {
+               Color mapColor, List<Character> characters, Window window) {
         super(name);
         sizeCheck(mapWidth, frameWidth);
         sizeCheck(mapHeight, frameHeight);
@@ -41,7 +41,7 @@ public abstract class Map extends JFrame implements ActionListener {
 
         // SET THE FRAME PROPERTIES
         this.mapColor = mapColor;
-        this.window = new Window(frameWidth, frameHeight, mapColor, characters);
+        this.window = window;
         add(window);
         pack();
         setVisible(true);
@@ -50,6 +50,12 @@ public abstract class Map extends JFrame implements ActionListener {
         // SET ACTION LISTENER PROPERTIES
         this.timer = new Timer(animationDelay, this);
         timer.start();
+    }
+
+    public Map(String name, int mapWidth, int mapHeight, int frameWidth, int frameHeight, int animationDelay,
+               Color mapColor, List<Character> characters) {
+        this(name, mapWidth, mapHeight, frameWidth, frameHeight, animationDelay, mapColor, characters,
+                new Window(frameWidth, frameHeight, mapColor, characters));
     }
 
     public void actionPerformed(ActionEvent e) {

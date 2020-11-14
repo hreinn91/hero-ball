@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 
-import static heroball.physics.Trig.getAngleDeg;
-
 @Slf4j
 public class GraphicsUtil {
 
@@ -67,19 +65,22 @@ public class GraphicsUtil {
 
     // Paints the arch pointing in the direction of the direction vector
     // The origin of the arch is in the middle of the arch and not on the point
-    public static void paintCharacterPointer(Graphics graphics, Color color, Vector2D location, Vector2D direction, int radius) {
+    // The fillArch method draws the image with the coordinates in the TOP right corner.
+    public static void paintCharacterPointer(Graphics graphics, Color color, Vector2D location, Vector2D direction, int r) {
+        paintCharacterPointer(graphics, color, location, direction, r, 35);
+    }
+
+    public static void paintCharacterPointer(Graphics graphics, Color color, Vector2D location, Vector2D direction, int r, int pointerWidth) {
         graphics.setColor(color);
-        // The fillArch method draws the image with the coordinates in the TOP right corner.
         // Translate to origin
-        int originX = location.getX() - radius;
-        int originY = location.getY() - radius;
-        int angleToDirection = -1 * getAngleDeg(location, direction);
-
-        int archX = originX + (int) (radius * Math.cos(Math.toRadians(angleToDirection)));
-        int archY = originY + (int) (radius * Math.sin(Math.toRadians(angleToDirection)));
-
-        graphics.fillArc(originX, originY, 2 * radius, 2 * radius,
-                0, angleToDirection);
+        int originX = location.getX() - r;
+        int originY = location.getY() - r;
+        int angleTo = location.getAngleTo(direction);
+        int angleToStartPaint = angleTo + 180 - pointerWidth/2;
+        int dx = (int) (r * Math.cos(Math.toRadians(angleTo)));
+        int dy = (int) (-1 * r * Math.sin(Math.toRadians(angleTo)));
+        graphics.fillArc(originX + dx, originY + dy, 2 * r, 2 * r,
+                angleToStartPaint, pointerWidth);
     }
 
 
