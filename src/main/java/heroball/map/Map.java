@@ -1,6 +1,7 @@
 package heroball.map;
 
 import heroball.character.Character;
+import heroball.character.Player;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +26,8 @@ public abstract class Map extends JFrame implements ActionListener {
     @Getter
     private final Window window;
     @Getter
+    private final Player player1;
+    @Getter
     private final List<Character> characters;
 
 
@@ -42,6 +45,7 @@ public abstract class Map extends JFrame implements ActionListener {
         // SET THE FRAME PROPERTIES
         this.mapColor = mapColor;
         this.window = window;
+        this.player1 = window.getPlayer1();
         add(window);
         pack();
         setVisible(true);
@@ -55,7 +59,7 @@ public abstract class Map extends JFrame implements ActionListener {
     public Map(String name, int mapWidth, int mapHeight, int frameWidth, int frameHeight, int animationDelay,
                Color mapColor, List<Character> characters) {
         this(name, mapWidth, mapHeight, frameWidth, frameHeight, animationDelay, mapColor, characters,
-                new Window(frameWidth, frameHeight, mapColor, characters));
+                new Window(frameWidth, frameHeight, mapColor, new Player(), characters));
     }
 
     public void actionPerformed(ActionEvent e) {

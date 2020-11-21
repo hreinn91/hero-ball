@@ -16,13 +16,13 @@ public class GraphicsUtil {
     public static Shape createConcentricRingShape(
             Vector2D center, double outerRadius, double thickness) {
         Ellipse2D outer = new Ellipse2D.Double(
-                center.getXAsDouble() - outerRadius,
-                center.getYAsDouble() - outerRadius,
+                center.getXAsFloat() - outerRadius,
+                center.getYAsFloat() - outerRadius,
                 outerRadius + outerRadius,
                 outerRadius + outerRadius);
         Ellipse2D inner = new Ellipse2D.Double(
-                center.getXAsDouble() - outerRadius + thickness,
-                center.getYAsDouble() - outerRadius + thickness,
+                center.getXAsFloat() - outerRadius + thickness,
+                center.getYAsFloat() - outerRadius + thickness,
                 outerRadius + outerRadius - thickness - thickness,
                 outerRadius + outerRadius - thickness - thickness);
         Area area = new Area(outer);

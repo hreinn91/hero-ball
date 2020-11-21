@@ -16,8 +16,8 @@ public class Trig {
      */
     // TODO: Handle case when x = 0
     public static short getAngleDeg(Vector2D from, Vector2D to) {
-        float dx = (float) (to.getXAsDouble() - from.getXAsDouble());
-        float dy = (float) (to.getYAsDouble() - from.getYAsDouble());
+        float dx = (float) (to.getXAsFloat() - from.getXAsFloat());
+        float dy = (float) (to.getYAsFloat() - from.getYAsFloat());
         dy = dy * -1;
         short angle = atan(dy / dx);
         if (dy == 0 && dx == 0)
