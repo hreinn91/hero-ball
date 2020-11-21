@@ -1,6 +1,6 @@
 package heroball.character;
 
-import heroball.physics.Vector2D;
+import heroball.physic.Vector2D;
 import lombok.Getter;
 import lombok.Setter;
 

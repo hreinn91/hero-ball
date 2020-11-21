@@ -1,4 +1,4 @@
-package heroball.physics;
+package heroball.physic;
 
 
 import lombok.AllArgsConstructor;

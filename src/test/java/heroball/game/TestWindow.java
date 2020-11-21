@@ -1,8 +1,10 @@
-package heroball.map;
+package heroball.game;
 
 import heroball.character.Character;
 import heroball.character.Player;
-import heroball.physics.Vector2D;
+import heroball.map.Map;
+import heroball.physic.Vector2D;
+import heroball.window.Window;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.awt.*;
 import java.util.List;
 
-import static heroball.physics.Vector2D.getVectorFromPoint;
+import static heroball.physic.Vector2D.getVectorFromPoint;
 import static heroball.util.GraphicsUtil.*;
 
 @Slf4j
@@ -25,8 +27,8 @@ public class TestWindow extends Window {
     @Setter
     Vector2D ref = new Vector2D(50, 50);
 
-    public TestWindow(int width, int height, Color backgroundColor, List<Character> characters) {
-        super(width, height, backgroundColor,new Player(), characters);
+    public TestWindow(int width, int height, Color backgroundColor, List<Character> characters, Map map) {
+        super(width, height, backgroundColor, new Player(), characters, map);
     }
 
     @Override

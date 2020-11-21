@@ -1,8 +1,8 @@
-package heroball.physics;
+package heroball.physic;
 
 import org.junit.jupiter.api.Test;
 
-import static heroball.physics.Trig.getAngleDeg;
+import static heroball.physic.Trig.getAngleDeg;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrigTest {

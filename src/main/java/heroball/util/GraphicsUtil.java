@@ -1,6 +1,6 @@
 package heroball.util;
 
-import heroball.physics.Vector2D;
+import heroball.physic.Vector2D;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;

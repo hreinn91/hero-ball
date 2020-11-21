@@ -1,4 +1,4 @@
-package heroball.physics;
+package heroball.physic;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
