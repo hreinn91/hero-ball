@@ -1,7 +1,7 @@
 package heroball.game;
 
 import heroball.character.Character;
-import heroball.character.Player;
+import heroball.character.player.Player;
 import heroball.map.Map;
 
 import java.awt.*;

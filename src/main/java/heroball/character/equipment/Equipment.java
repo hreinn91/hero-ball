@@ -1,11 +1,20 @@
 package heroball.character.equipment;
 
-import heroball.physic.Vector2D;
+import heroball.character.player.Player;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.awt.*;
 
+@AllArgsConstructor
 public abstract class Equipment {
 
-    public abstract void paint(Graphics graphicsContext, Vector2D location);
+    @Getter
+    private final Player player;
+    @Getter
+    private int size;
+
+
+    public abstract void paint(Graphics graphics);
 
 }

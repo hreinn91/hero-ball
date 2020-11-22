@@ -1,18 +1,22 @@
 package heroball.character.equipment;
 
-import heroball.physic.Vector2D;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import heroball.character.player.Player;
 
 import java.awt.*;
 
-@AllArgsConstructor
+import static heroball.util.GraphicsUtil.paintCharacterPointer;
+
 public class DirectionPointer extends Equipment{
 
-    @Getter private int size;
+
+    public DirectionPointer(Player player, int size) {
+        super(player, size);
+    }
 
     @Override
-    public void paint(Graphics graphicsContext, Vector2D location) {
-
+    public void paint(Graphics graphics) {
+        Color color = Color.RED;
+        graphics.setColor(color);
+        paintCharacterPointer(graphics, color, getPlayer().getLocation(), getPlayer().getDirection(), getSize());
     }
 }

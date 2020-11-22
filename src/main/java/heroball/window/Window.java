@@ -1,20 +1,22 @@
 package heroball.window;
 
 import heroball.character.Character;
-import heroball.character.Player;
+import heroball.character.player.Player;
+import heroball.character.player.PlayerAction;
 import heroball.map.Map;
 import lombok.Getter;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
-public class Window extends JPanel implements MouseListener, KeyListener {
+import static heroball.character.player.PlayerAction.MOVE_UP;
+
+public class Window extends JPanel implements MouseListener{
 
     @Getter
     private final Map map;
@@ -34,16 +36,22 @@ public class Window extends JPanel implements MouseListener, KeyListener {
         this.map = map;
         sizeCheck(map.getWidth(), getWidth());
         sizeCheck(map.getHeight(), getHeight());
+
+        setupActions(getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW), getActionMap());
     }
 
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        player1.paint(graphics);
         characters.forEach(character -> character.paint(graphics));
     }
 
     public void step() {
 
+        if(isMouseInWindow()){
+            player1.setDirection(getMousePosition());
+        }
 
         //End with repaint
         repaint();
@@ -78,18 +86,23 @@ public class Window extends JPanel implements MouseListener, KeyListener {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent keyEvent) {
+    private void setupActions(InputMap inputMap, ActionMap actionMap){
 
-    }
 
-    @Override
-    public void keyPressed(KeyEvent keyEvent) {
-    }
+        AbstractAction moveAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if(actionEvent != null){
+                    Object source = actionEvent.getSource();
+                    getPlayer1().move(0, -1*getPlayer1().getSpeed());
+                }
+            }
+        };
 
-    @Override
-    public void keyReleased(KeyEvent keyEvent) {
+        PlayerAction playerAction = new PlayerAction(getPlayer1());
 
+        inputMap.put(KeyStroke.getKeyStroke("W"), MOVE_UP);
+        actionMap.put(MOVE_UP, moveAction);
     }
 
     private static void sizeCheck(int mapSize, int frameSize) {

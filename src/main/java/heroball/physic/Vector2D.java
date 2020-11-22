@@ -40,8 +40,7 @@ public class Vector2D {
         return point == null ? null : new Vector2D((int)point.getX(), (int)point.getY());
     }
 
-    @Override
-    public Vector2D clone() {
+    public Vector2D vectorClone() {
         return new Vector2D(getX(), getY());
     }
 

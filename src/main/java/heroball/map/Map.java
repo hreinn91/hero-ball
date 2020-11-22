@@ -2,7 +2,7 @@ package heroball.map;
 
 
 import heroball.character.Character;
-import heroball.character.Player;
+import heroball.character.player.Player;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

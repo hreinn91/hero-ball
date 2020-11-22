@@ -76,7 +76,7 @@ public class GraphicsUtil {
         int originX = location.getX() - r;
         int originY = location.getY() - r;
         int angleTo = location.getAngleTo(direction);
-        int angleToStartPaint = angleTo + 180 - pointerWidth/2;
+        int angleToStartPaint = angleTo + 180 - pointerWidth / 2;
         int dx = (int) (r * Math.cos(Math.toRadians(angleTo)));
         int dy = (int) (-1 * r * Math.sin(Math.toRadians(angleTo)));
         graphics.fillArc(originX + dx, originY + dy, 2 * r, 2 * r,
@@ -91,6 +91,42 @@ public class GraphicsUtil {
     public static void drawLine(Graphics graphics, Color color, Vector2D p1, Vector2D p2) {
         graphics.setColor(color);
         graphics.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+    }
+
+    public static void drawLine(Graphics graphics,  Color color, int thickness, Vector2D start, Vector2D stop) {
+
+        // The thick line is in fact a filled polygon
+        graphics.setColor(color);
+        int dX = stop.getX() - start.getX();
+        int dY = stop.getY() - start.getY();
+        // line length
+        double lineLength = Math.sqrt(dX * dX + dY * dY);
+
+        double scale = (double) (thickness) / (2 * lineLength);
+
+        // The x,y increments from an endpoint needed to create a rectangle...
+        double ddx = -scale * (double) dY;
+        double ddy = scale * (double) dX;
+        ddx += (ddx > 0) ? 0.5 : -0.5;
+        ddy += (ddy > 0) ? 0.5 : -0.5;
+        int dx = (int) ddx;
+        int dy = (int) ddy;
+
+        // Now we can compute the corner points...
+        int xPoints[] = new int[4];
+        int yPoints[] = new int[4];
+
+        xPoints[0] = start.getX() + dx;
+        yPoints[0] = start.getY() + dy;
+        xPoints[1] = start.getX() - dx;
+        yPoints[1] = start.getY() - dy;
+        xPoints[2] = stop.getX() - dx;
+        yPoints[2] = stop.getY() - dy;
+        xPoints[3] = stop.getX() + dx;
+        yPoints[3] = stop.getY() + dy;
+
+        graphics.fillPolygon(xPoints, yPoints, 4);
+
     }
 
 

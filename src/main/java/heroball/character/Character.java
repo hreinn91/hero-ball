@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public abstract class Character {
 
@@ -12,16 +13,13 @@ public abstract class Character {
     @Setter
     private int size;
     @Getter
-    @Setter
-    private int dir = 0;
-    @Getter
-    @Setter
-    private Vector2D direction = new Vector2D(0, 0);
-    @Getter
     private Color color;
     @Setter
     @Getter
     private Vector2D location;
+    @Getter
+    @Setter
+    private int speed = 1;
 
     public Character(int size, Color color, Vector2D location){
         this.size = size;
@@ -46,5 +44,7 @@ public abstract class Character {
     public void moveTo(int x, int y) {
         setLocation(new Vector2D(x, y));
     }
+
+    public abstract void action(KeyEvent key);
 
 }

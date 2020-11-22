@@ -1,7 +1,7 @@
 package heroball.game;
 
 import heroball.character.Character;
-import heroball.character.Player;
+import heroball.character.player.Player;
 import heroball.map.Map;
 import heroball.physic.Vector2D;
 import heroball.window.Window;
@@ -34,8 +34,8 @@ public class TestWindow extends Window {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-//        paintArchTest(graphics);
-        followMouseTest(graphics);
+        paintArchTest(graphics);
+//        followMouseTest(graphics);
 
     }
 
@@ -71,7 +71,7 @@ public class TestWindow extends Window {
         drawLine(graphics, color, getOrigin(), getRef());
         paintCircle(graphics, 5, color, getRef());
         short angle = origin.getAngleTo(getRef());
-        paintCircle(graphics, 5, color, origin.clone().addPolar(size, angle));
+        paintCircle(graphics, 5, color, origin.vectorClone().addPolar(size, angle));
     }
 
     public void followMouseTest(Graphics graphics) {
@@ -84,6 +84,6 @@ public class TestWindow extends Window {
         drawLine(graphics, color, getOrigin(), mousePosition);
         paintCircle(graphics, 5, color, mousePosition);
         short angle = origin.getAngleTo(mousePosition);
-        paintCircle(graphics, 5, color, origin.clone().addPolar(size, angle));
+        paintCircle(graphics, 5, color, origin.vectorClone().addPolar(size, angle));
     }
 }
