@@ -43,6 +43,9 @@ public class Window extends JPanel implements MouseListener{
 
     @Override
     public void paintComponent(Graphics graphics) {
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON));
         super.paintComponent(graphics);
         player1.paint(graphics);
         characters.forEach(character -> character.paint(graphics));

@@ -61,15 +61,15 @@ public class Game extends JFrame implements ActionListener {
         window.step();
     }
 
-    public void add(Character c) {
-        characters.add(c);
-    }
-
     public static Game build(String name, int mapSize, int windowSize, int animationDelay, Color backgroundColor,
                              Player player1, List<Character> characters) {
         Map map = new Map(mapSize, mapSize, player1, characters);
         Window window = new Window(windowSize, windowSize, backgroundColor, player1, characters, map);
         return new Game(name, animationDelay, backgroundColor, player1, characters, map, window);
+    }
+
+    public void add(Character c) {
+        characters.add(c);
     }
 
     public void hideCursor(){

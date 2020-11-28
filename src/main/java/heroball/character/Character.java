@@ -27,7 +27,7 @@ public abstract class Character {
         this.location = location;
     }
 
-    public abstract void paint(Graphics graphicsContext);
+    public abstract void paint(Graphics graphics);
 
     public void move(int dx, int dy) {
         location.add(speed * dx, speed * dy);

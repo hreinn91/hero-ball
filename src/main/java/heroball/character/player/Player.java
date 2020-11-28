@@ -24,6 +24,9 @@ public class Player extends Character {
     private final Vector2D direction = new Vector2D(0, 0);
     @Getter
     List<Equipment> equipments = new ArrayList<>();
+    @Setter
+    @Getter
+    private boolean alive;
 
     public Player(){
         super(14, Color.RED, new Vector2D(200, 200));
