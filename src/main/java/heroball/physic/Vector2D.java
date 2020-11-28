@@ -36,6 +36,10 @@ public class Vector2D {
         return add(dx, -1 * dy);
     }
 
+    public Vector2D scalarProd(float speed) {
+        return add((int) speed*getX(), (int) speed*getY());
+    }
+
     public static Vector2D getVectorFromPoint(Point point) {
         return point == null ? null : new Vector2D((int)point.getX(), (int)point.getY());
     }

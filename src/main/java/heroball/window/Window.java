@@ -14,7 +14,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
-import static heroball.character.player.PlayerAction.MOVE_UP;
+import static heroball.character.player.PlayerAction.*;
+import static heroball.character.player.PlayerAction.MOVE_RIGHT;
 
 public class Window extends JPanel implements MouseListener{
 
@@ -88,21 +89,15 @@ public class Window extends JPanel implements MouseListener{
 
     private void setupActions(InputMap inputMap, ActionMap actionMap){
 
-
-        AbstractAction moveAction = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if(actionEvent != null){
-                    Object source = actionEvent.getSource();
-                    getPlayer1().move(0, -1*getPlayer1().getSpeed());
-                }
-            }
-        };
-
         PlayerAction playerAction = new PlayerAction(getPlayer1());
-
         inputMap.put(KeyStroke.getKeyStroke("W"), MOVE_UP);
-        actionMap.put(MOVE_UP, moveAction);
+        actionMap.put(MOVE_UP, playerAction);
+        inputMap.put(KeyStroke.getKeyStroke("S"), MOVE_DOWN);
+        actionMap.put(MOVE_DOWN, playerAction);
+        inputMap.put(KeyStroke.getKeyStroke("D"), MOVE_RIGHT);
+        actionMap.put(MOVE_RIGHT, playerAction);
+        inputMap.put(KeyStroke.getKeyStroke("A"), MOVE_LEFT);
+        actionMap.put(MOVE_LEFT, playerAction);
     }
 
     private static void sizeCheck(int mapSize, int frameSize) {

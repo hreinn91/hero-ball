@@ -8,14 +8,12 @@ import heroball.physic.Vector2D;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import static heroball.util.GraphicsUtil.*;
+import static heroball.util.GraphicsUtil.paintCircle;
 
 public class Player extends Character {
 
@@ -29,6 +27,7 @@ public class Player extends Character {
 
     public Player(){
         super(14, Color.RED, new Vector2D(200, 200));
+        setSpeed(2);
         equipments.add(new DirectionPointer(this, (int)(2.5* getSize())));
         equipments.add(new LaserPointer(this, 2));
     }

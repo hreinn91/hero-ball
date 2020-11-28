@@ -21,7 +21,7 @@ public abstract class Character {
     @Setter
     private int speed = 1;
 
-    public Character(int size, Color color, Vector2D location){
+    public Character(int size, Color color, Vector2D location) {
         this.size = size;
         this.color = color;
         this.location = location;
@@ -29,12 +29,8 @@ public abstract class Character {
 
     public abstract void paint(Graphics graphicsContext);
 
-    public void move(Vector2D velocity) {
-        location.add(velocity);
-    }
-
     public void move(int dx, int dy) {
-        location.add(dx, dy);
+        location.add(speed * dx, speed * dy);
     }
 
     public void moveTo(Vector2D newLocation) {
